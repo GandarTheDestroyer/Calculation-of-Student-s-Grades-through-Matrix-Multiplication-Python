@@ -1,0 +1,111 @@
+# Python Program to Compute Student's Final Grades.
+import sys
+MAX = 100
+# Function to check eligibility of grading system.
+def sum(GradingSystem) :
+for j in range(GradingSystemVariation) :
+sum = 0
+for i in range (Assessment) :
+sum = sum + GradingSystem[i][j]
+if (sum > 1) :
+print("Error! A Grading System Variation does not add up to 100%. 
+Rerun Program.")
+sys.exit()
+sum = 0
+# Declare matrices for assessment grades and grading system.
+AssessmentGrades = [[0 for i in range(MAX)] for j in range(MAX)]
+GradingSystem = [[0 for i in range(MAX)] for j in range(MAX)]
+# Input initial data and check for validity.
+while True:
+Student = int(input("Enter Number of Students: "))
+if (Student < 1 or Student > 100):
+print("**Error! Invalid Number of Students. Try again.")
+continue
+else :
+break
+while True:
+Assessment = int(input("Enter Number of Assessments: "))
+if (Assessment < 1 or Assessment > 100) :
+print("**Error! Invalid Number of Assessments. Try again.")
+continue
+else :
+break
+while True:
+GradingSystemVariation = int(input("Enter Number of Grading System Variation: "))
+if (GradingSystemVariation < 1 or GradingSystemVariation > 100) :
+print("**Error! Invalid Number of Grading System Variation. Try again.")
+continue
+else :
+break
+# Input assessment grades of students.
+print("\nEnter Assessment Grades per Student.")
+for i in range(Student) :
+for j in range(Assessment) :
+while True:
+AssessmentGrades[i][j] = float(input("Student " + str(i+1) + ", Assessment 
+" + str(j+1) + ": "))
+if (AssessmentGrades[i][j] < 1 or AssessmentGrades[i][j] > 100) :
+print("Error! Invalid Number of Assessment Grade. Try again.")
+continue
+else :
+break
+print("\n")
+# Input grading system of each variation.
+print("Enter Grading System per Variation.")
+for i in range(Assessment) :
+for j in range(GradingSystemVariation) :
+while True:
+GradingSystem[i][j] = float(input("Assessment " + str(i+1) + ", Variation " + 
+str(j+1) + ": "))
+if (GradingSystem[i][j] <= 0 or GradingSystem[i][j] > 1) :
+print("Error! Invalid Grading System. Try again.\n")
+continue
+else :
+break
+sum(GradingSystem) 
+# Calculate final grades
+FinalGrades = [[0 for i in range(MAX)] for j in range(MAX)]
+for i in range(Student) :
+for j in range(GradingSystemVariation) :
+FinalGrades[i][j] = 0
+for k in range(Assessment) :
+FinalGrades[i][j] += AssessmentGrades[i][k] * GradingSystem[k][j];
+# Display assessment grades of students
+print("\n-------------------------------------------")
+print("\tAssessment Grades per Student")
+print("-------------------------------------------")
+print("\t\t", end = "")
+for j in range(Assessment) :
+print(" A" + str(j+1), end = "\t")
+for i in range(Student) :
+print("\nStudent " + str(i+1) + ": ", end = "\t")
+for j in range(Assessment) :
+print(AssessmentGrades[i][j], end = " \t")
+print()
+print("-------------------------------------------")
+# Display grading system
+print("\n------------------------------------")
+print("\tGrading System")
+print("------------------------------------")
+print("\t\t", end = "")
+for j in range(GradingSystemVariation) :
+print(" V" + str(j+1), end = "\t")
+for i in range(Assessment) :
+print("\nAssessment " + str(i+1) + ": ", end = "\t")
+for j in range(GradingSystemVariation) :
+print(GradingSystem[i][j], end = "\t")
+print()
+print("------------------------------------")
+# Display Final Grades
+print("\n------------------------------------")
+print("\tFinal Grades")
+print("------------------------------------")
+print("\t\t", end = "")
+for j in range(GradingSystemVariation) :
+print(" V" + str(j+1), end = "\t")
+for i in range(Student) :
+print("\nStudent " + str(i+1) + ": ", end = "\t")
+for j in range(GradingSystemVariation) :
+print(round(FinalGrades[i][j],2), end = "\t")
+print()
+print("------------------------------------")
